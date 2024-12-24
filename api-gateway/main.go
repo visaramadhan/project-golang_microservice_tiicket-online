@@ -1,11 +1,11 @@
 package main
 
 import (
-	"ticket-online/middleware"
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/visaramadhan/project-golang_microservice_tiicket-online/api-gateway/middleware"
 )
 
 func main() {
@@ -14,9 +14,9 @@ func main() {
 	// Product Routes - Authentication Required
 	categoryRoutes := router.Group("/category")
 	categoryRoutes.Use(middleware.AuthMiddleware())
-	categoryRoutes.Any("/*proxyPath", reverseProxy("http://localhost:8081", "/product"))
+	categoryRoutes.Any("/*proxyPath", reverseProxy("http://localhost:8087", "/product"))
 
-	router.Run(":8080")
+	router.Run(":8087")
 }
 
 func reverseProxy(target, prefix string) gin.HandlerFunc {

@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package category;
+
+
+option go_package = "./";
+
+service CategoryService {
+  rpc UpdateCategory (UpdateCategoryRequest) returns (UpdateCategoryResponse);
+  rpc ListCategory (ListCategoryRequest) returns (ListCategoryRequest);
+}
+
+message UpdateCategoryRequest {
+  uint32 id = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message UpdateCategoryResponse {
+    uint32 id = 1;
+    string name = 2;
+    string description = 3;
+  }
+
+message ListCategoryRequest {
+  uint32 id = 1;
+}
+
+message ListCategoryResponse {
+  repeated Category category = 1;
+}
+
+message Category {
+   uint32 id = 1;
+  string name = 2;
+  string description = 3;
+    string icon = 4;
+}
